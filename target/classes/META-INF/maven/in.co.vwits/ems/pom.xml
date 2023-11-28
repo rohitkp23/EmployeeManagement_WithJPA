@@ -1,26 +1,35 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>in.co.vwits</groupId>
-  <artifactId>ems</artifactId>
-  <version>1.0.1-release</version>
-  
-  <properties>
-	  <maven.compiler.target>17</maven.compiler.target>
-	  <maven.compiler.source>17</maven.compiler.source>
-	  
-	  <!-- following is the userdefined name -->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>in.co.vwits</groupId>
+	<artifactId>ems</artifactId>
+	<version>1.0.0-RELEASE</version>
+
+	<properties>
+		<maven.compiler.target>17</maven.compiler.target>
+		<maven.compiler.source>17</maven.compiler.source>
+
+		<!-- Following is the userdefined name -->
 		<jackson.version>2.15.2</jackson.version>
 		<mysql.version>8.0.29</mysql.version>
-  </properties>
-  
-  <dependencies>
-			<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+		<!-- While using multiple different frameworks in a single project,
+		it is very much necessary to check compatibilty of both project versions. 
+		This is crucial point to remember while choosing framework versions
+		Note: In this project we have downloaded hibernate version from 6 to 5 because 
+		Spring version 5 does not support Hibernate version 6-->
+		<spring.version>5.3.23</spring.version>
+		<hibernate.version>5.4.2.Final</hibernate.version>
+	</properties>
+
+	<dependencies>
+		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>${mysql.version}</version>
 		</dependency>
-		
+
 		<!--
 		https://mvnrepository.com/artifact.com/com.fasterxml.jackson.core/jackson-core -->
 		<dependency>
@@ -40,16 +49,30 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>${jackson.version}</version>
 		</dependency>
-		
+
 		<!-- https://mvnrepository.com/artifact/org.hibernate.orm/hibernate-core -->
 		<dependency>
-		    <groupId>org.hibernate</groupId>
-		    <artifactId>hibernate-core</artifactId>
-		    <version>6.3.1.Final</version>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate.version}</version>
 		</dependency>
-		
+
+		<!--
+		https://mvnrepository.com/artifact/org.springframework/spring-context -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
 	</dependencies>
-	
+
 	<build>
 		<!--	   filename is used to give the name to generated artifacts-->
 		<finalName>EmployeeManagementApp</finalName>
@@ -59,10 +82,9 @@
 				<artifactId>maven-clean-plugin</artifactId>
 				<version>3.3.2</version>
 				<configuration>
-          			<release>17</release>
-        		</configuration>
+					<release>17</release>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
-  
 </project>

@@ -3,6 +3,10 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import in.co.vwits.ems.ApplicationConfiguration;
 import in.co.vwits.ems.model.Employee;
 import in.co.vwits.ems.service.EmployeeService;
 import in.co.vwits.ems.service.impl.EmployeeServiceImpl;
@@ -11,13 +15,16 @@ import in.co.vwits.model.exception.EmployeeNotFoundException;
 public class TestEmployee {
 
 	public static void main(String[] args) throws EmployeeNotFoundException {
+		
+		ApplicationContext container;
+		container = new AnnotationConfigApplicationContext(ApplicationConfiguration.class);
 
 		int option = 1;
 
 		Scanner sc = null;	
 		try {
 			sc = new Scanner(System.in);
-			EmployeeService service = new EmployeeServiceImpl();
+			EmployeeService service = container.getBean(EmployeeService.class);
 
 			do {
 				System.out.println("*********************Welcome to Employee Management Portal*********************");

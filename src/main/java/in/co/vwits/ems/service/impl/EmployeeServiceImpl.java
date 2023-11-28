@@ -5,19 +5,23 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import in.co.vwits.ems.dao.EmployeeDao;
-import in.co.vwits.ems.dao.impl.EmployeeJpaDaoImpl;
 import in.co.vwits.ems.model.Employee;
 import in.co.vwits.ems.service.EmployeeService;
 import in.co.vwits.model.exception.EmployeeNotFoundException;
 
+@Service
+@Transactional
 public class EmployeeServiceImpl implements EmployeeService {
+	
+	@Autowired
 	private EmployeeDao dao;
 
-	public EmployeeServiceImpl() {
-		dao = new EmployeeJpaDaoImpl();
-
-	}
 	
 	@Override
 	public List<Employee> findAll(){
